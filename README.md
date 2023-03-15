@@ -1,0 +1,3 @@
+# Maze
+
+A maze game.
