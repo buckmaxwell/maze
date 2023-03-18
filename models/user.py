@@ -1,7 +1,6 @@
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String, ForeignKey
 
-Base = declarative_base()
+from .base import Base
 
 
 class User(Base):
@@ -10,7 +9,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String(80), unique=True, nullable=False)
     team = Column(String(10), nullable=False)
+    game_id = Column(Integer, ForeignKey("games.id"), nullable=False)
 
     def __repr__(self):
         return f"<User {self.username}>"
-

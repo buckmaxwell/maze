@@ -1,4 +1,15 @@
-from models.user import User, Base
+import sys
+import os.path
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+import pkgutil
+import models
+
+for _, module_name, _ in pkgutil.iter_modules(models.__path__):
+    __import__(f"models.{module_name}")
+
+from models.base import Base
 
 
 from logging.config import fileConfig
@@ -23,7 +34,6 @@ if config.config_file_name is not None:
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 target_metadata = Base.metadata
-
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
