@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 
-from .base import Base
+from models.base import Base
 
 
 class User(Base):
@@ -8,7 +8,7 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     username = Column(String(80), unique=True, nullable=False)
-    team = Column(String(10), nullable=False)
+    team = Column(String(10), nullable=True)
     game_id = Column(Integer, ForeignKey("games.id"), nullable=False)
 
     def __repr__(self):

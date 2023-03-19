@@ -1,6 +1,10 @@
 from flask import Flask
+from routes.game import game_bp
+
 
 app = Flask(__name__)
+
+app.register_blueprint(game_bp)
 
 
 @app.route("/")
